@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESTful Web Services Test</title>
+</head>
+<body>
+    <h1>RESTful Web Services Test</h1>
+    <h2>Test Grade Service</h2>
+    <label for="gradeId">Score for Grade:</label>
+    <input type="text" id="gradeId" name="gradeId" value="76">
+    <button onclick="fetchGrade()">Fetch Grade</button>
+    <div id="grade"></div>
+
+    <h2>Test Rank Service</h2>
+    <label for="rankId">ScoreD for Rank:</label>
+    <input type="text" id="rankId" name="rankId" value="76">
+    <button onclick="fetchRank()">Fetch Rank</button>
+    <div id="rank"></div>
+    
+    <h2>Test Grade Rank Service</h2>
+    <label for="graderankId">Score for Rank:</label>
+    <input type="text" id="graderankId" name="graderankId" value="76">
+    <button onclick="fetchGradeRank()">Fetch Grade & Rank</button>
+    <div id="graderank"></div>
+    
+     <h2>Test House Prediction Service</h2>
+    <label for="predictId">Enter comma separated test values</label>
+    <input type="text" id="predictId" name="predictId" value="2667,9669,5,1,1,0">
+    <button onclick="fetchPrediction()">Predict</button>
+    <div id="predict"></div>
+
+    <script>
+        function fetchGrade() {
+            const studentId = document.getElementById('gradeId').value;
+            fetch(`/grade/${studentId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('grade').innerText = `Grade: ${data}`;
+                })
+                .catch(error => console.error('Error fetching grade:', error));
+        }
+
+        function fetchRank() {
+            const studentId = document.getElementById('rankId').value;
+            fetch(`/rank/${studentId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('rank').innerText = `Grade: ${data}`;
+                })
+                 
+                .catch(error => console.error('Error fetching rank:', error));
+        }
+        function fetchGradeRank() {
+            const studentId = document.getElementById('graderankId').value;
+            fetch(`/grade-rank/${studentId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('graderank').innerText = `Grade: ${data}`;
+                })
+                 
+                .catch(error => console.error('Error fetching graderank:', error));
+        }
+        function fetchPrediction() {
+            const studentId = document.getElementById('predictId').value;
+            fetch(`/predict/${studentId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('predict').innerText = `Grade: ${data}`;
+                })
+                 
+                .catch(error => console.error('Error predicting', error));
+        }
+    </script>
+</body>
+</html>
