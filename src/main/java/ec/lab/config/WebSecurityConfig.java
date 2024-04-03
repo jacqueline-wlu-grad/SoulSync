@@ -1,4 +1,4 @@
-package ec.lab;
+package ec.lab.config;
  
 import javax.sql.DataSource;
  
@@ -50,13 +50,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/get").authenticated()
             .anyRequest().permitAll()
-//            .and()
-//            .formLogin()
-//                .usernameParameter("email")
-//                .defaultSuccessUrl("/users")
-//                .permitAll()
             .and()
-            .logout().logoutSuccessUrl("/").permitAll();
+            .formLogin()
+            .loginPage("/login")
+            .loginProcessingUrl("/process-login")
+            .defaultSuccessUrl("/home")
+            .failureUrl("/login?error=true")
+            .permitAll()
+	        .and()
+	        .logout()
+            .permitAll()
+            .logoutSuccessUrl("/").permitAll();
     }
      
      
