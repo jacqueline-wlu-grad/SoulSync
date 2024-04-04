@@ -19,8 +19,8 @@ public class LoginRegistrationSevice{
    private RegisteredUserRepository registeredUserDao;
 
 
-	public RegisteredUser getUser(String username) {
-		return registeredUserDao.findByUsername(username);
+	public RegisteredUser getUser(String email) {
+		return registeredUserDao.findByEmail(email);
 		// TODO Auto-generated method stub
 		
 	}

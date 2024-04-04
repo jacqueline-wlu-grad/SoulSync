@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html 
+	xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Please Log In</title>
+<meta charset="ISO-8859-1">
+<title>Please Log In</title>
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Please Log In</h1>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form method="post" th:action="@{/process-login}">
-    <div>
-        <input name="username" placeholder="Username" type="text"/>
-    </div>
-    <div>
-        <input name="password" placeholder="Password" type="password"/>
-    </div>
-    <input type="submit" value="Log in"/>
-</form>
+	<div class="container text-center">
+		<div>
+			<h1>Login</h1>
+		</div>
+		<div th:if="${param.error}">Invalid username and password.</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		<div class="m-3">
+		
+		<form method="post" th:action="@{/process-login}" 
+		style="max-width: 600px; margin: 0 auto;">
+			<div>
+				<input name="username" placeholder="Username" type="text" class="form-control"/>
+			</div>
+			<div>
+				<input name="password" placeholder="Password" type="password" class="form-control"/>
+			</div>
+			<input type="submit" class="btn btn-primary" value="Log in" />
+		</form>
+		</div>
+	</div>
 </body>
 </html>

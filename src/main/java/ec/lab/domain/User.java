@@ -1,6 +1,8 @@
 package ec.lab.domain;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,58 +14,54 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(nullable = false, unique = true, length = 45)
+	private String username;
 
-    private String username;
+	private String firstName;
 
-    private String firstName;
-    
-    private String lastName;
-    
-    private int age;
-    
-    private String sex;
-    
-    private String orientation;
-    
-    private String bodyType;
-    
-    private String diet;
-    
-    private String drinks;
-    
-    private String drugs;
-    
-    private String education;
-    
-    private String ethnicity;
-    
-    private int heightInCm;
-    
-    private String location;
-    
-    private String job;
-    
-    private String smokes;
-    
-    
+	private String lastName;
 
-    @Lob
-    private byte[] object;
+	private int age;
 
-    
+	private String sex;
 
-    public byte[] getObject() {
-        return object;
-    }
+	private String orientation;
 
-    public void setObject(byte[] object) {
-        this.object = object;
-    }
+	private String bodyType;
+
+	private String diet;
+
+	private String drinks;
+
+	private String drugs;
+
+	private String education;
+
+	private String ethnicity;
+
+	private int heightInCm;
+
+	private String location;
+
+	private String job;
+
+	private String smokes;
+
+	@Lob
+	private byte[] object;
+
+	public byte[] getObject() {
+		return object;
+	}
+
+	public void setObject(byte[] object) {
+		this.object = object;
+	}
 
 	public Long getId() {
 		return id;

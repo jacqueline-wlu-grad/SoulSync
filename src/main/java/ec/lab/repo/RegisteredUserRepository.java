@@ -11,4 +11,6 @@ public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, 
     List<RegisteredUser> findAll();
 
 	RegisteredUser findByUsername(String username);
+
+	RegisteredUser findByEmail(String email);
 }

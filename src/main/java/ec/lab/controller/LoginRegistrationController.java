@@ -1,22 +1,26 @@
 package ec.lab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import ec.lab.domain.RegisteredUser;
+import ec.lab.domain.User;
 import ec.lab.service.bean.LoginRegistrationSevice;
+import ec.lab.service.bean.UserBean;
 
 @Controller
 public class LoginRegistrationController {
 
    @Autowired
    private LoginRegistrationSevice service;
+   @Autowired
+   private UserBean userService;
 
     
     @PostMapping("/process_register")
@@ -40,6 +44,26 @@ public class LoginRegistrationController {
         model.addAttribute("registereduser", new RegisteredUser());
          
         return "registration_form";
+    }
+    
+    @GetMapping("/home")
+    public String homeScreen(Model model) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String name = auth.getName();
+    	System.out.println(name);
+    	RegisteredUser user = service.getUser(name);
+    	if(userService.getUser(user.getUsername())!=null) {
+            return "home";
+    	}
+    	User userDetails = new User();
+    	userDetails.setUsername(user.getUsername());
+    	userDetails.setFirstName(user.getFirstName());
+    	userDetails.setLastName(user.getLastName());
+
+    	
+        model.addAttribute("user", userDetails);
+
+    	return "user_details";
     }
    
 }
