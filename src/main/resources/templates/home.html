@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dating App Homepage</title>
+<style>
+    /* Basic styles for sidebar, navbar, and user display section */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0; /* Background color for the body */
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, #ffc0cb, #ff69b4); /* Pink gradient background */
+        padding-top: 70px; /* Adjusted to accommodate the navbar height */
+        color: white;
+        text-align: center;
+        transition: width 0.3s;
+        z-index: 1000;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        padding: 10px 0;
+    }
+
+    .sidebar ul li a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #ff1493; /* Darker pink on hover */
+    }
+
+    .navbar {
+    background: linear-gradient(to bottom, #a52da0, #b75ab2); /* Lighter purple gradient background */
+    color: white; /* White text color */
+    padding: 15px 20px; /* Increased padding */
+    text-align: center;
+    position: fixed;
+    width: 100%; /* Full width */
+    top: 0;
+    z-index: 1001; /* Higher z-index to ensure it's above the sidebar */
+}
+
+    .navbar h2 {
+        margin: 0;
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        float: right;
+        margin-right: 20px;
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+	.content {
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff); /* Cream gradient background */
+    padding-top: 80px; /* Adjusted padding to accommodate the navbar and space between navbar and content */
+    padding-left: 270px; /* Adjusted padding to accommodate the sidebar */
+}
+
+
+    .user-display {
+        margin-top: 50px; /* Adjusted for the navbar */
+        padding: 20px;
+    }
+
+    .user-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .user-card {
+        width: 200px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        transition: transform 0.3s;
+        background-color: white; /* White background for user card */
+    }
+
+
+    .user-card img {
+        width: 100%;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .user-card h3 {
+        margin-bottom: 5px;
+    }
+
+    .user-card p {
+        margin: 5px 0;
+    }
+
+    .user-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>Dating App</h2>
+    <ul>
+       <li><a href="login.html" style="color: white;">Logout</a></li>
+    </ul>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="user_details.html">Profile</a></li>
+        <li><a href="UserPreference.html">Preferences</a></li>
+        <li><a href="#">About Us</a></li>
+    </ul>
+</div>
+
+<!-- Page content -->
+<div class="user-display">
+    <!-- User display section -->
+    <h2>Users</h2>
+    <div class="user-container">
+        <!-- User cards will be dynamically added here -->
+    </div>
+</div>
+
+<!-- JavaScript for fetching and displaying users -->
+<script>
+    // Fetch users from the server and display them
+    fetch('/users')
+        .then(response => response.json())
+        .then(users => {
+            const userContainer = document.querySelector('.user-container');
+            users.forEach(user => {
+                const userCard = `
+                    <div class="user-card">
+                        <img src="${user.image}" alt="${user.name}">
+                        <h3>${user.name}</h3>
+                        <p>Age: ${user.age}</p>
+                        <p>Sex: ${user.sex}</p>
+                    </div>`;
+                userContainer.innerHTML += userCard;
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+</script>
+
+</body>
+</html>
