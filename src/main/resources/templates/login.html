@@ -1,35 +1,94 @@
 <!DOCTYPE html>
-<html 
-	xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Please Log In</title>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Please Log In</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #f8bbd0, #f48fb1); /* Light pink gradient */
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto; /* Adjusted margin to center the container */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #ffffff;
+			 
+        }
+
+        h1 {
+            color: #6a1b9a; /* Purple color */
+        }
+
+        input[type="text"],
+        input[type="password"],
+        .btn-primary {
+            display: block;
+            width: 95%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #9c27b0, #673ab7); /* Purple gradient */
+            color: white;
+            border: none;
+            cursor: pointer;
+			width: 98.7%; /* Changed width to 100% */
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #673ab7, #9c27b0); /* Purple gradient on hover */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-	<div class="container text-center">
-		<div>
-			<h1>Login</h1>
-		</div>
-		<div th:if="${param.error}">Invalid username and password.</div>
-		<div th:if="${param.logout}">You have been logged out.</div>
-		<div class="m-3">
-		
-		<form method="post" th:action="@{/process-login}" 
-		style="max-width: 600px; margin: 0 auto;">
-			<div>
-				<input name="username" placeholder="Username" type="text" class="form-control"/>
-			</div>
-			<div>
-				<input name="password" placeholder="Password" type="password" class="form-control"/>
-			</div>
-			<input type="submit" class="btn btn-primary" value="Log in" />
-		</form>
-		</div>
-	</div>
+    <div class="container text-center">
+        <div>
+            <h1>Login</h1>
+        </div>
+        <div th:if="${not #strings.isEmpty(param.error)}" class="text-danger">Invalid username and password.</div>
+        <div th:if="${param.logout}">You have been logged out.</div>
+        <div class="m-3">
+            <form method="post" th:action="@{/process-login}" style="max-width: 600px; margin: 0 auto;">
+                <div>
+                    <input name="username" placeholder="Username" type="text" class="form-control"/>
+                </div>
+                <div>
+                    <input name="password" placeholder="Password" type="password" class="form-control"/>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Log in" />
+            </form>
+        </div>
+    </div>
+	<script>
+        // JavaScript to redirect to home page after successful login
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            // Redirect to home page
+            window.location.href = "/home"; // Replace "/home" with the actual URL of your home page
+        });
+    </script>
 </body>
 </html>
