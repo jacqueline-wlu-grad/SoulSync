@@ -80,13 +80,9 @@ public class ModelBean {
 
 			trainingDataSet.setClassIndex(trainingDataSet.numAttributes() - 1);
 			
-//			 int[] attributesToConsider = {7, 8, 9, 10, 11, 12, 13, 14, 15, 16,}; // Adjust attribute indices as per your ARFF file
 
 			LinearNNSearch nn = new LinearNNSearch(trainingDataSet);
 
-			// linear regression algorithm setting and configure
-
-			// get coefficients of the linear regression model
 
 			nearest = nn.kNearestNeighbours(queryInstance, 10);
 

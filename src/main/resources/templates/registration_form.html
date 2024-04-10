@@ -7,28 +7,26 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #f8bbd0, #f48fb1); /* Light pink gradient */
-            margin: 0;
-            padding: 0;
+            background: linear-gradient(45deg, #C2185B, #F48FB1); /* Light pink gradient */
+           padding :100px;
         }
 
         .container {
             max-width: 400px;
-            margin: 50px auto;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #F8BBD0;
             border-radius: 5px;
             background: #ffffff; /* White background */
         }
 
         h1 {
-            color: #6a1b9a; /* Purple color */
+            color: #C2185B; /* Purple color */
         }
 
         input[type="text"],
         input[type="email"],
         input[type="password"],
-        button {
+        .btn-primary {
             display: block;
             width: 95%;
             margin-bottom: 10px;
@@ -37,16 +35,16 @@
             border-radius: 5px;
         }
 
-        button {
-            background: linear-gradient(45deg, #9c27b0, #673ab7); /* Purple gradient */
+        .btn-primary {
+            background: linear-gradient(45deg,  #AD1457,#EC407A); /* Purple gradient */
             color: white;
             border: none;
             cursor: pointer;
             width: 100%;
         }
 
-        button:hover {
-            background: linear-gradient(45deg, #673ab7, #9c27b0); /* Purple gradient on hover */
+        .btn-primary:hover {
+            background: linear-gradient(45deg ,#EC407A, #AD1457); /* Purple gradient on hover */
         }
 
         a {
@@ -62,7 +60,7 @@
 <body>
     <div class="container text-center">
         <div>
-            <h1>User Registration - Sign Up</h1>
+            <h1>Sign Up</h1>
         </div>
         <form th:action="@{/process_register}" th:object="${registereduser}"
             method="post" style="max-width: 600px; margin: 0 auto;">
