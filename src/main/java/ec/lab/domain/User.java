@@ -44,13 +44,17 @@ public class User implements Serializable {
 
 	private String ethnicity;
 
-	private int heightInCm;
+	private int height;
 
 	private String location;
 
 	private String job;
 
 	private String smokes;
+	
+	private String image;
+	
+	private String bio;
 
 	@Lob
 	private byte[] object;
@@ -167,12 +171,12 @@ public class User implements Serializable {
 		this.ethnicity = ethnicity;
 	}
 
-	public int getHeightInCm() {
-		return heightInCm;
+	public int getHeight() {
+		return height;
 	}
 
-	public void setHeightInCm(int heightInCm) {
-		this.heightInCm = heightInCm;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	public String getLocation() {
@@ -198,4 +202,21 @@ public class User implements Serializable {
 	public void setSmokes(String smokes) {
 		this.smokes = smokes;
 	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 }

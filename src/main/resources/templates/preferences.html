@@ -3,91 +3,85 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Sign Up - CodeJava</title>
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <style>
-        body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(45deg, #f8bbd0, #f48fb1); /* Light pink gradient */
-        margin: 0;
-        padding: 0;
-    }
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background: linear-gradient(45deg, #f8bbd0, #f48fb1);
+	/* Light pink gradient */
+	margin: 0;
+	padding: 0;
+}
 
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: #ffffff; /* White background */
-    }
+.container {
+	max-width: 600px;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #ffffff; /* White background */
+}
 
-    h1 {
-        color: #6a1b9a; /* Purple color */
-    }
+h1 {
+	color: #6a1b9a; /* Purple color */
+}
 
-    input[type="text"],
-    select,
-    button {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+input[type="text"], select, button {
+	display: block;
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
 
-    button {
-        background: linear-gradient(45deg, #9c27b0, #673ab7); /* Purple gradient */
-        color: white;
-        border: none;
-        cursor: pointer;
-        width: 98.7%; /* Changed width to 100% */
-    }
+button {
+	background: linear-gradient(45deg, #9c27b0, #673ab7);
+	/* Purple gradient */
+	color: white;
+	border: none;
+	cursor: pointer;
+	width: 98.7%; /* Changed width to 100% */
+}
 
-    button:hover {
-        background: linear-gradient(45deg, #673ab7, #9c27b0); /* Purple gradient on hover */
-    }
+button:hover {
+	background: linear-gradient(45deg, #673ab7, #9c27b0);
+	/* Purple gradient on hover */
+}
 
-    a {
-        text-decoration: none;
-        color: #007bff; /* Blue link */
-    }
+a {
+	text-decoration: none;
+	color: #007bff; /* Blue link */
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
-    </style>
+a:hover {
+	text-decoration: underline;
+}
+</style>
 </head>
 <body>
 	<div class="container text-center">
 		<div>
 			<h1>User Preference</h1>
 		</div>
-		<form style="max-width: 600px; margin: 0 auto;" >
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Height (in Cms)</label>
-					<div class="col-8">
-						<input type="text" th:field="*{heightInCm}" class="form-control" required
-							minlength="2" maxlength="20" />
-					</div>
+		<form th:action="@{/save_prefs}" th:object="${userPref}" method="post"
+			style="max-width: 600px; margin: 0 auto;">
+			<div class="form-group row">
+				<label class="col-4 col-form-label">Height (in Cms)</label>
+				<div class="col-8">
+					<input type="text" th:field="*{heightInCm}" class="form-control"
+						required minlength="2" maxlength="20" />
+				</div>
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Sex </label>
 					<div class="col-8">
 						<select th:field="*{sex}" class="form-control">
 							<option th:value="Male">Male</option>
 							<option th:value="'Female'">Female</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-4 col-form-label">Orientation </label>
-					<div class="col-8">
-						<select th:field="*{orientation}" class="form-control">
-							<option th:value="'Straight'">Straight</option>
-							<option th:value="'Bisexual'">Bisexual</option>
-							<option th:value="'Gay'">Gay</option>
 						</select>
 					</div>
 				</div>
@@ -152,11 +146,16 @@
 					<label class="col-4 col-form-label">Education</label>
 					<div class="col-8">
 						<select th:field="*{education}" class="form-control">
-							<option th:value="'graduated_from_college/university'">graduated from college/university</option>
-							<option th:value="'graduated_from_masters_program'">graduated from masters program</option>
-							<option th:value="'working_on_college/university'">working on college/university</option>
-							<option th:value="'working_on_masters_program'">working on masters program</option>
-							<option th:value="'graduated_from_two-year_college'">graduated from two-year college</option>
+							<option th:value="'graduated_from_college/university'">graduated
+								from college/university</option>
+							<option th:value="'graduated_from_masters_program'">graduated
+								from masters program</option>
+							<option th:value="'working_on_college/university'">working
+								on college/university</option>
+							<option th:value="'working_on_masters_program'">working
+								on masters program</option>
+							<option th:value="'graduated_from_two-year_college'">graduated
+								from two-year college</option>
 						</select>
 					</div>
 				</div>
@@ -166,9 +165,12 @@
 						<select th:field="*{job}" class="form-control">
 							<option th:value="'other'">Other</option>
 							<option th:value="'student'">Student</option>
-							<option th:value="'science/tech/engineering'">Science / Tech / Engineering</option>
-							<option th:value="'computer/hardware/software'">Computer / Hardware / Software</option>
-							<option th:value="'artistic/musical/writer'">Artistic / Musical / Writer</option>
+							<option th:value="'science/tech/engineering'">Science /
+								Tech / Engineering</option>
+							<option th:value="'computer/hardware/software'">Computer
+								/ Hardware / Software</option>
+							<option th:value="'artistic/musical/writer'">Artistic /
+								Musical / Writer</option>
 						</select>
 					</div>
 				</div>
@@ -195,7 +197,8 @@
 					</div>
 				</div>
 				<div>
-					<button type="submit" class="btn btn-primary">Submit Preference</button>
+					<button type="submit" class="btn btn-primary">Submit
+						Preference</button>
 				</div>
 			</div>
 		</form>

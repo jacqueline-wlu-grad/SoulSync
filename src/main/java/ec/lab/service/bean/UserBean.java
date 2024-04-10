@@ -5,6 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import ec.lab.domain.User;
 import ec.lab.repo.UserRepository;
@@ -33,5 +38,28 @@ public class UserBean{
 			return true;
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+
+	public List<User> parseUsersFromFile() {
+		String filePath = "users.txt";
+		List<User> users = new ArrayList<>();
+
+		try {
+			// Create ObjectMapper instance
+			ObjectMapper objectMapper = new ObjectMapper();
+
+			// Read JSON data from file and parse into array of User objects
+			User[] usersArray = objectMapper.readValue(new File(filePath), User[].class);
+
+			// Convert array to list
+			for (User user : usersArray) {
+				users.add(user);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return users;
 	}
 }

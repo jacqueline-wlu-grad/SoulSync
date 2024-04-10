@@ -159,7 +159,7 @@
 <!-- JavaScript for fetching and displaying users -->
 <script>
     // Fetch users from the server and display them
-    fetch('/users')
+    fetch('/matches')
         .then(response => response.json())
         .then(users => {
             const userContainer = document.querySelector('.user-container');
@@ -167,7 +167,7 @@
                 const userCard = `
                     <div class="user-card">
                         <img src="${user.image}" alt="${user.name}">
-                        <h3>${user.name}</h3>
+                        <h3>${user.firstName} ${user.lastName}</h3>
                         <p>Age: ${user.age}</p>
                         <p>Sex: ${user.sex}</p>
                     </div>`;

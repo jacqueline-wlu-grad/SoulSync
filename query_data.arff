@@ -1,11 +1,17 @@
-@relation QueryData
+@relation UserPref
 
-@attribute attr1 numeric
-@attribute attr2 numeric
-@attribute attr3 numeric
-@attribute attr4 numeric
-@attribute attr5 numeric
-@attribute class numeric
+@attribute age numeric
+@attribute sex string
+@attribute bodyType string
+@attribute diet string
+@attribute smokes string
+@attribute drugs string
+@attribute drinks string
+@attribute ethnicity string
+@attribute heightInCm numeric
+@attribute job string
+@attribute education string
+
 
 @data
-3198,9669,5,1,1,0
+0,'Male','Average','Mostly_anything','No','Never','Socially','white',78,'other','graduated_from_college/university'
