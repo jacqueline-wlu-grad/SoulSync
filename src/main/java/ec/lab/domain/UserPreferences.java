@@ -21,8 +21,6 @@ public class UserPreferences implements Serializable {
     private String username;
 
     private int age;
-    
-    private String sex;
         
     private String bodyType;
     
@@ -36,7 +34,7 @@ public class UserPreferences implements Serializable {
     
     private String ethnicity;
     
-    private int heightInCm;
+    private int height;
     
     private String location;
     
@@ -82,15 +80,7 @@ public class UserPreferences implements Serializable {
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
+	
 	public String getBodyType() {
 		return bodyType;
 	}
@@ -139,12 +129,12 @@ public class UserPreferences implements Serializable {
 		this.ethnicity = ethnicity;
 	}
 
-	public int getHeightInCm() {
-		return heightInCm;
+	public int getHeight() {
+		return height;
 	}
 
-	public void setHeightInCm(int heightInCm) {
-		this.heightInCm = heightInCm;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	public String getLocation() {

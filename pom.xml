@@ -4,11 +4,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ec.asgmt</groupId>
-	<artifactId>ms-spring-boot</artifactId>
+	<artifactId>cp630-final-project</artifactId>
 	<version>0.1.0</version>
 	<packaging>jar</packaging>
-	<name>EC Spring Boot  example</name>
-	<description>Demo project for Spring Boot Web MVC JSP</description>
+	<name>CP630 FINAL PROJECT</name>
+	<description>FINAL PROJECT for CP630 Enterprise Computing Jacqueline- #235839620 | Gowtham #2358xxxx0</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -98,7 +98,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>ms-spring-boot</finalName>
+		<finalName>cp630-final-project</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

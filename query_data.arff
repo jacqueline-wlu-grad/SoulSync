@@ -1,17 +1,16 @@
 @relation UserPref
 
 @attribute age numeric
-@attribute sex string
 @attribute bodyType string
 @attribute diet string
 @attribute smokes string
 @attribute drugs string
 @attribute drinks string
 @attribute ethnicity string
-@attribute heightInCm numeric
+@attribute height numeric
 @attribute job string
 @attribute education string
 
 
 @data
-0,'Male','Average','Mostly_anything','No','Never','Socially','white',78,'other','graduated_from_college/university'
+0,'Average','Mostly_anything','No','Never','Socially','white',0,'other','graduated_from_two-year_college'

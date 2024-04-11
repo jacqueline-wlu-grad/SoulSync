@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>User Details</title> <
+<title>SoulSync</title> 
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
@@ -11,12 +11,21 @@
 <style>
 body {
 	font-family: Arial, sans-serif;
-	background: linear-gradient(45deg, #C2185B, #F48FB1);
 	/* Light pink gradient */
 	margin: 0;
 	padding: 0;
 }
 
+.navbar {
+	background: linear-gradient(to bottom, #AD1457, #EC407A);
+	/* Lighter purple gradient background */
+	color: white; /* White text color */
+	padding: 15px 20px; /* Increased padding */
+	position: fixed;
+	width: 100%; /* Full width */
+	top: 0;
+	z-index: 1001; /* Higher z-index to ensure it's above the sidebar */
+}
 .container {
 	max-width: 600px;
 	margin: 50px auto;
@@ -66,9 +75,9 @@ a:hover {
 <body>
 	<div class="container text-center">
 		<div>
-			<h1>Select your Preferences</h1>
+			<h1>Preferences</h1>
 		</div>
-		<form th:action="@{/save_prefs}" th:object="${userPref}" method="post"
+		<form th:action="@{/edit_prefs}" th:object="${userPref}" method="post"
 			style="max-width: 600px; margin: 0 auto;">
 		
 

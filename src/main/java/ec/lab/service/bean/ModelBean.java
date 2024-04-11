@@ -3,7 +3,6 @@ package ec.lab.service.bean;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,13 +12,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import ec.lab.domain.Model;
 import ec.lab.domain.User;
 import ec.lab.domain.UserPreferences;
 import ec.lab.repo.ModelRepository;
-import ec.lab.repo.UserPrefRepository;
 import ec.lab.repo.UserRepository;
 import weka.classifiers.Classifier;
 import weka.core.Instance;
@@ -27,18 +23,23 @@ import weka.core.Instances;
 import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.core.neighboursearch.LinearNNSearch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class ModelBean {
+    private static final Logger logger = LoggerFactory.getLogger(ModelBean.class);
 
 	@Autowired
 	private ModelRepository modelDao;
 	@Autowired
 	private UserRepository userDao;
-	
+	@Autowired 
+	private UserBean userBean;
 
 	public double prediction(String query) {
 		try {
+			
 			// Retrieve the weka_regression object from the Model entity
 			List<Model> model = modelDao.findByName("weka-lr");
 
@@ -63,7 +64,9 @@ public class ModelBean {
 		return -99999999;
 	}
 
-	public List<User> topMatches(UserPreferences score) {
+	public List<User> topMatches(UserPreferences score, String sex, String orientation) {
+		logger.info("Begin processing Matches");
+		
 		List<User> users = new ArrayList<>();
 		Instances nearest = null;
 		try {
@@ -72,19 +75,14 @@ public class ModelBean {
 			Instances queryValues = createInstancesFromPreferences(score);
 
 			queryInstance = queryValues.get(0);
-//			for (int i = 0; i < score.split(",").length; i++) {
-//				queryInstance.setValue(i, Double.parseDouble(score.split(",")[i]));
-//			}
-
-			Instances trainingDataSet = createInstancesFromUsersData();
+			Instances trainingDataSet = createInstancesFromUsersData(sex, orientation);
 
 			trainingDataSet.setClassIndex(trainingDataSet.numAttributes() - 1);
-			
 
 			LinearNNSearch nn = new LinearNNSearch(trainingDataSet);
 
 
-			nearest = nn.kNearestNeighbours(queryInstance, 10);
+			nearest = nn.kNearestNeighbours(queryInstance, 5);
 
 			for (Instance i : queryValues) {
 				System.out.println(i.toString());
@@ -106,6 +104,8 @@ public class ModelBean {
 			System.out.println("Error parsing query data: " + e.getMessage());
 
 		}
+		logger.info("End processing Matches");
+
 		return users;
 	}
 	
@@ -126,7 +126,8 @@ public class ModelBean {
         user.setJob(instance.stringValue(13));
         user.setEducation(instance.stringValue(14));
         user.setBio(instance.stringValue(15));
-        user.setImage(instance.stringValue(16));
+        user.setLocation(instance.stringValue(16));
+        user.setImage(instance.stringValue(17));
 
         return user;
     }
@@ -143,7 +144,7 @@ public class ModelBean {
 				+ "@attribute drinks string\n"
 
 				+ "@attribute ethnicity string\n"
-				+ "@attribute heightInCm numeric\n"
+				+ "@attribute height numeric\n"
 				+ "@attribute job string\n"
 				+ "@attribute education string\n\n" 
 				+ "@data\n" + queryData;
@@ -176,7 +177,6 @@ public class ModelBean {
 
 		// Define attributes
 		arffContent.append("@attribute age numeric\n");
-		arffContent.append("@attribute sex string\n");
 		arffContent.append("@attribute bodyType string\n");
 		arffContent.append("@attribute diet string\n");
 		
@@ -185,7 +185,7 @@ public class ModelBean {
 		arffContent.append("@attribute drinks string\n");
 		
 		arffContent.append("@attribute ethnicity string\n");
-		arffContent.append("@attribute heightInCm numeric\n");
+		arffContent.append("@attribute height numeric\n");
 		arffContent.append("@attribute job string\n");
 		arffContent.append("@attribute education string\n\n");
 		// Add more attributes as needed...
@@ -195,7 +195,6 @@ public class ModelBean {
 		// Append data
 		for (UserPreferences user : userpref) {
 			arffContent.append(user.getAge()).append(",");
-			arffContent.append("'").append(user.getSex()).append("',");
 			arffContent.append("'").append(user.getBodyType()).append("',");
 			arffContent.append("'").append(user.getDiet()).append("',");
 			
@@ -204,7 +203,7 @@ public class ModelBean {
 			arffContent.append("'").append(user.getDrinks()).append("',");
 			
 			arffContent.append("'").append(user.getEthnicity()).append("',");
-			arffContent.append(user.getHeightInCm()).append(",");
+			arffContent.append(user.getHeight()).append(",");
 			arffContent.append("'").append(user.getJob()).append("',");
 			arffContent.append("'").append(user.getEducation()).append("'");
 			
@@ -233,8 +232,29 @@ public class ModelBean {
 
 	}
 
-	private Instances createInstancesFromUsersData() throws Exception {
-		List<User> users = userDao.findAll();
+	private Instances createInstancesFromUsersData(String sex, String orientation) throws Exception {
+		
+		List<User> users = null;
+		if("Bisexual".equals(orientation)) {
+			users =  userDao.findAll();
+		}
+		else if("m".equals(sex) && "Straight".equalsIgnoreCase(orientation)) {
+			users = userDao.findBySex("f");
+		}
+		else if("f".equals(sex) && "Straight".equalsIgnoreCase(orientation)) {
+			users = userDao.findBySex("m");
+		}
+		else if("m".equals(sex) && "Gay".equalsIgnoreCase(orientation)) {
+			users = userDao.findBySex(sex);
+		}
+		else if("f".equals(sex) && "Gay".equalsIgnoreCase(orientation)) {
+			users = userDao.findBySex(sex);
+		}
+		else {
+			System.out.println("Nobody likes you. Sorry!");
+		}
+		
+		users.removeIf(x->x.getUsername().equalsIgnoreCase(userBean.getUserName()));
 		StringBuilder arffContent = new StringBuilder();
 		arffContent.append("@relation Users\n\n");
 
@@ -253,10 +273,12 @@ public class ModelBean {
 		arffContent.append("@attribute drinks string\n");
 		
 		arffContent.append("@attribute ethnicity string\n");
-		arffContent.append("@attribute heightInCm numeric\n");
+		arffContent.append("@attribute height numeric\n");
 		arffContent.append("@attribute job string\n");
 		arffContent.append("@attribute education string\n");
 		arffContent.append("@attribute bio string\n");
+		arffContent.append("@attribute location string\n");
+
 		arffContent.append("@attribute image string\n\n");
 
 		// Add more attributes as needed...
@@ -283,6 +305,7 @@ public class ModelBean {
 			arffContent.append("'").append(user.getJob()).append("',");
 			arffContent.append("'").append(user.getEducation()).append("',");
 			arffContent.append("'").append(user.getBio()).append("',");
+			arffContent.append("'").append(user.getLocation()).append("',");
 			arffContent.append("'").append(user.getImage()).append("'");
 
 			

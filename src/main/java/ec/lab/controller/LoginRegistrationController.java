@@ -1,5 +1,11 @@
 package ec.lab.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +28,8 @@ public class LoginRegistrationController {
    @Autowired
    private UserBean userService;
 
-    
+   private static final Logger logger = LoggerFactory.getLogger(LoginRegistrationController.class);
+
     @PostMapping("/process_register")
     public String processRegister(RegisteredUser user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -42,7 +49,13 @@ public class LoginRegistrationController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("registereduser", new RegisteredUser());
-         
+        try {
+        	List<User> loadUsers = userService.parseUsersFromFile();
+        	for(User u: loadUsers) {
+        		userService.save(u);
+        	}
+        	}catch(Exception e){
+        	}
         return "registration_form";
     }
     
@@ -65,5 +78,18 @@ public class LoginRegistrationController {
 
     	return "user_details";
     }
-   
+    
+//    @GetMapping("/logout")
+//    public String logout() {
+//    	SecurityContextHolder.clearContext();
+//
+//        // Invalidate the HTTP session
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            session.invalidate();
+//        }
+//    	
+//    	return "login";
+//    }
+//   
 }

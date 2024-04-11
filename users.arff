@@ -12,26 +12,18 @@
 @attribute drugs string
 @attribute drinks string
 @attribute ethnicity string
-@attribute heightInCm numeric
+@attribute height numeric
 @attribute job string
 @attribute education string
 @attribute bio string
+@attribute location string
 @attribute image string
 
 
 @data
-49,'user34sf1','Hector','Castillo',34,'m','fit','mostly vegetarian','no','never','socially','hispanic / latin',67,'technology','graduated from college/university','','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
-50,'jacqueline','Jacqueline','John',25,'Female','Athletic','Mostly_Vegetarian','No','Sometimes','Socially','white',70,'student','graduated_from_college/university','null','null'
-48,'user32sf1','Bradley','King',32,'m','fit','mostly vegetarian','no','never','socially','white',69,'technology','graduated from college/university','',''
-47,'user38sf1','Akira','Lee',38,'m','fit','mostly vegetarian','no','never','socially','asian',68,'technology','graduated from college/university','',''
-46,'user26sj1','Diego','Perez',26,'m','athletic','mostly vegetarian','no','never','socially','hispanic / latin',69,'technology','graduated from college/university','',''
-45,'user38sj2','Raymond','Washington',38,'m','fit','mostly vegetarian','no','never','socially','white',69,'technology','graduated from college/university','',''
-43,'user38sj1','Ricardo','Ramirez',38,'m','fit','mostly vegetarian','no','never','socially','hispanic / latin',67,'technology','graduated from college/university','','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
-44,'user30sj1','Rogelio','Ramos',30,'m','fit','mostly vegetarian','no','never','socially','hispanic / latin',69,'technology','graduated from college/university','',''
-42,'user24o1','Nick','Smith',24,'m','athletic','mostly vegetarian','no','never','socially','black',67,'technology','graduated from college/university','','https://www.newsnationnow.com/wp-content/uploads/sites/108/2021/09/NewsNation_211018_MarkHill_1316_R.jpg?w=1040&h=1386&crop=1'
-41,'user38o1','Brad','Wilson',38,'m','fit','mostly vegetarian','no','never','socially','white',71,'technology','graduated from college/university','',''
-39,'user28sf3','Michael','Smith',28,'m','thin','','no','never','socially','',73,'science / tech / engineering','graduated from college/university','','gemini but it doesn&rsquo;t matter'
-40,'user38al1','Jin','Kim',38,'m','fit','','','','','asian',67,'rather not say','','','cancer'
-38,'user28sf2','Carlos','Rodriguez',28,'m','athletic','anything','no','never','socially','hispanic / latin',72,'political / government','graduated from college/university','','virgo but it doesn&rsquo;t matter'
-36,'user30sf1','Emily','Johnson',30,'f','skinny','mostly anything','no','never','socially','white',66,'sales / marketing / biz dev','graduated from high school','',''
-37,'user26belt1','Sarah','Davis',26,'f','athletic','mostly anything','no','never','socially','white',66,'science / tech / engineering','graduated from college/university','','taurus but it doesn&rsquo;t matter'
+485,'user28sf1b','Tanya','Smith',28,'f','fit','mostly vegetarian','no','never','socially','black',68,'technology','graduated from college/university','','Toronto','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
+483,'user28sf1f','Linda','Wilson',28,'f','fit','mostly vegetarian','no','never','socially','white',66,'technology','graduated from college/university','','Toronto','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
+482,'user25sf1f','Kelly','Brown',25,'f','fit','mostly vegetarian','no','never','socially','hispanic / latin',66,'technology','graduated from college/university','','Toronto','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
+481,'user26sf1f','Jane','Lee',26,'f','fit','mostly vegetarian','no','never','socially','asian',64,'technology','graduated from college/university','','Toronto','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
+444,'user30sf99','Emily','Johnson',30,'f','skinny','mostly anything','no','never','socially','white',66,'sales / marketing / biz dev','graduated from high school','','Toronto','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'
+445,'user26belt1','Sarah','Davis',26,'f','athletic','mostly anything','no','never','socially','white',66,'science / tech / engineering','graduated from college/university','','Waterloo','https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg'

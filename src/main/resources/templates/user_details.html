@@ -2,63 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>User Details</title>
-<<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-    <style>
-         body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(45deg, #f8bbd0, #f48fb1); /* Light pink gradient */
-        margin: 0;
-        padding: 0;
-    }
+<title>User Details</title> 
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background: linear-gradient(45deg, #C2185B, #F48FB1);
+	/* Light pink gradient */
+	margin: 0;
+	padding: 0;
+}
 
-    .container {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: #ffffff; /* White background */
-    }
+.container {
+	max-width: 600px;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #ffffff; /* White background */
+}
 
-    h1 {
-        color: #6a1b9a; /* Purple color */
-    }
+h1 {
+	color: #C2185B; /* Purple color */
+}
 
-    input[type="text"],
-    select,
-    button {
-        display: block;
-        width: 95%;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+input[type="text"], select, button {
+	display: block;
+	width: 95%;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
 
-    button {
-        background: linear-gradient(45deg, #9c27b0, #673ab7); /* Purple gradient */
-        color: white;
-        border: none;
-        cursor: pointer;
-		width: 98.7%; /* Changed width to 100% */
-    }
+.btn-primary {
+	background: linear-gradient(45deg,  #AD1457,#EC407A); /* Purple gradient */
+	/* Purple gradient */
+	color: white;
+	border: none;
+	cursor: pointer;
+	width: 98.7%; /* Changed width to 100% */
+}
 
-    button:hover {
-        background: linear-gradient(45deg, #673ab7, #9c27b0); /* Purple gradient on hover */
-    }
+.btn-primary:hover {
+	background: linear-gradient(45deg ,#EC407A, #AD1457); /* Purple gradient on hover */
+	/* Purple gradient on hover */
+}
 
-    a {
-        text-decoration: none;
-        color: #007bff; /* Blue link */
-    }
+a {
+	text-decoration: none;
+	color: #007bff; /* Blue link */
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
-    </style>
+a:hover {
+	text-decoration: underline;
+}
+</style>
 </head>
 <body>
 	<div class="container text-center">
@@ -66,7 +69,7 @@
 			<h1>User Details</h1>
 		</div>
 		<form th:action="@{/add_details}" th:object="${user}" method="post"
-			style="max-width: 600px; margin: 0 auto;" >
+			style="max-width: 600px; margin: 0 auto;">
 			<div class="m-3">
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Username: </label>
@@ -102,16 +105,16 @@
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Height (in Cms)</label>
 					<div class="col-8">
-						<input type="text" th:field="*{height}" class="form-control" required
-							minlength="2" maxlength="20" />
+						<input type="text" th:field="*{height}" class="form-control"
+							required minlength="2" maxlength="20" />
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-4 col-form-label">Sex </label>
 					<div class="col-8">
 						<select th:field="*{sex}" class="form-control">
-							<option th:value="Male">Male</option>
-							<option th:value="'Female'">Female</option>
+							<option th:value="m">Male</option>
+							<option th:value="'f'">Female</option>
 						</select>
 					</div>
 				</div>
@@ -186,11 +189,16 @@
 					<label class="col-4 col-form-label">Education</label>
 					<div class="col-8">
 						<select th:field="*{education}" class="form-control">
-							<option th:value="'graduated_from_college/university'">graduated from college/university</option>
-							<option th:value="'graduated_from_masters_program'">graduated from masters program</option>
-							<option th:value="'working_on_college/university'">working on college/university</option>
-							<option th:value="'working_on_masters_program'">working on masters program</option>
-							<option th:value="'graduated_from_two-year_college'">graduated from two-year college</option>
+							<option th:value="'graduated_from_college/university'">graduated
+								from college/university</option>
+							<option th:value="'graduated_from_masters_program'">graduated
+								from masters program</option>
+							<option th:value="'working_on_college/university'">working
+								on college/university</option>
+							<option th:value="'working_on_masters_program'">working
+								on masters program</option>
+							<option th:value="'graduated_from_two-year_college'">graduated
+								from two-year college</option>
 						</select>
 					</div>
 				</div>
@@ -200,9 +208,12 @@
 						<select th:field="*{job}" class="form-control">
 							<option th:value="'other'">Other</option>
 							<option th:value="'student'">Student</option>
-							<option th:value="'science/tech/engineering'">Science / Tech / Engineering</option>
-							<option th:value="'computer/hardware/software'">Computer / Hardware / Software</option>
-							<option th:value="'artistic/musical/writer'">Artistic / Musical / Writer</option>
+							<option th:value="'science/tech/engineering'">Science /
+								Tech / Engineering</option>
+							<option th:value="'computer/hardware/software'">Computer
+								/ Hardware / Software</option>
+							<option th:value="'artistic/musical/writer'">Artistic /
+								Musical / Writer</option>
 						</select>
 					</div>
 				</div>
@@ -223,8 +234,23 @@
 					<label class="col-4 col-form-label">Location</label>
 					<div class="col-8">
 						<select th:field="*{location}" class="form-control">
-							<option th:value="'Male'" th:text="Male"></option>
-							<option th:value="'Female'" th:text="Female"></option>
+							<option th:value="'Toronto'" th:text="Toronto"></option>
+							<option th:value="'Ottawa'" th:text="Ottawa"></option>
+							<option th:value="'Mississauga'" th:text="Mississauga"></option>
+							<option th:value="'Brampton'" th:text="Brampton"></option>
+							<option th:value="'Hamilton'" th:text="Hamilton"></option>
+							<option th:value="'London'" th:text="London"></option>
+							<option th:value="'Markham'" th:text="Markham"></option>
+							<option th:value="'Vaughan'" th:text="Vaughan"></option>
+							<option th:value="'Kitchener'" th:text="Kitchener"></option>
+							<option th:value="'Windsor'" th:text="Windsor"></option>
+							<option th:value="'Oshawa'" th:text="Oshawa"></option>
+							<option th:value="'Barrie'" th:text="Barrie"></option>
+							<option th:value="'Sudbury'" th:text="Sudbury"></option>
+							<option th:value="'Cambridge'" th:text="Cambridge"></option>
+							<option th:value="'Kingston'" th:text="Kingston"></option>
+							<option th:value="'Guelph'" th:text="Guelph"></option>
+							<option th:value="'Peterborough'" th:text="Peterborough"></option>
 						</select>
 					</div>
 				</div>

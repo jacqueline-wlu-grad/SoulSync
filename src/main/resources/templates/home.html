@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dating App Homepage</title>
+	<meta charset="ISO-8859-1">
+	<title>SoulSync</title> 
+	<link rel="stylesheet" type="text/css"
+		href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <style>
 /* Basic styles for sidebar, navbar, and user display section */
 body {
@@ -89,7 +93,7 @@ body {
 }
 
 .user-display {
-	margin-top: 50px; /* Adjusted for the navbar */
+	margin-top: 90px; /* Adjusted for the navbar */
 	padding: 20px;
 	margin-left: 250px;
 	color: #000000;
@@ -105,7 +109,7 @@ body {
 	width: 200px;
 	margin-bottom: 20px;
 	padding: 10px;
-	border: 1px solid #ccc;
+	border: 1px solid #F8BBD0;
 	border-radius: 5%;
 	text-align: center;
 	transition: transform 0.3s;
@@ -128,6 +132,8 @@ body {
 
 .user-card:hover {
 	transform: translateY(-5px);
+	border: 1px solid #D81B60;
+	
 }
 </style>
 </head>
@@ -137,16 +143,16 @@ body {
 	<div class="navbar">
 		<h2>SoulSync</h2>
 		<ul>
-			<li><a href="/logout" style="color: white;">Logout</a></li>
+			<li><a href="/login" style="color: white;">Logout</a></li>
 		</ul>
 	</div>
 
 	<!-- Sidebar -->
 	<div class="sidebar">
 		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="/user_details.html">Profile</a></li>
-			<li><a href="/UserPreference.html">Preferences</a></li>
+			<li><a href="/home">Home</a></li>
+			<li><a href="#" onclick="loadPage('/edit_user_details_form')">Profile</a></li>
+			<li><a href="#" onclick="loadPage('/edit_user_pref_form')">Preferences</a></li>
 			<li><a href="#" onclick="loadPage('about_us.html')"id="about-us-btn">About Us</a></li>
 
 		</ul>
@@ -164,6 +170,7 @@ body {
 	<!-- JavaScript for fetching and displaying users -->
 	<script>
     // Fetch users from the server and display them
+    
     fetch('/matches')
         .then(response => response.json())
         .then(users => {
@@ -175,7 +182,11 @@ body {
                         <h3>${user.firstName} ${user.lastName}</h3>
                         <p>Age: ${user.age}</p>
                         <p>Sex: ${user.sex}</p>
+                        <p>Height: ${user.height}</p>
+                        <p>Ethnicity: ${user.ethnicity}</p>
+                        <p>Location: ${user.location}</p>
                     </div>`;
+                    console.log(user.location);
                 userContainer.innerHTML += userCard;
             });
         })
